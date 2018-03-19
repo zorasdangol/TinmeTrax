@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinApp1.UserInterfaces.RegisterPage">
+    <ContentPage.Content>
+        <StackLayout Margin="10" 
+                     >
+            <Label Text="Welcome to Register Forms!"
+                   FontSize="Large"/>
+            <Label Text="Email:"/>
+            <Entry Placeholder="Enter Email"
+                   Text="{Binding Email , Mode=TwoWay}"
+                   Keyboard="Email"/>
+            <Label Text="Password:"/>
+            <Entry Placeholder="Enter Password"
+                   Text="{Binding Password, Mode=TwoWay}"
+                   IsPassword="True"/>
+            <Label Text="Confirm Password:"/>
+            <Entry Placeholder="Reenter Password"
+                   Text="{Binding ConfirmPassword, Mode=TwoWay}"
+                   IsPassword="True"/>
+            <Button Text="Register"
+                    Command="{Binding registerCommand}"
+                    CommandParameter="{Binding User}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

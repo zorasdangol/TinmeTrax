@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:XamarinApp1.UserInterfaces"
+            x:Class="XamarinApp1.UserInterfaces.HomePage"
+            >
+    
+    <MasterDetailPage.Master>
+        <ContentPage Padding="10" BackgroundColor="WhiteSmoke" Title="Master" >
+            <StackLayout>
+                <Frame  OutlineColor="Azure"
+                        CornerRadius="5"
+                        BackgroundColor="AntiqueWhite">
+                <StackLayout HorizontalOptions="FillAndExpand">                   
+                    <Label Text="Employee Details:" FontSize="Large"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                        
+                            <Label Text="ID:"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    FontAttributes="Bold"/>
+                            <Label Text="{Binding Employee.EmpID}"
+                                    Grid.Row="0"
+                                    Grid.Column="1"/>
+                            <Label Text="Name:"
+                                   Grid.Row="1"
+                                   Grid.Column="0"
+                                   FontAttributes="Bold"/>
+                            <Label Text="{Binding Employee.EmployeeName}"
+                                   Grid.Row="1"
+                                   Grid.Column="1"/>
+                            <Label Text="Designation:"
+                                   Grid.Row="2"
+                                   Grid.Column="0"
+                                   FontAttributes="Bold"/>
+                            <Label Text="{Binding Employee.Designation}"
+                                   Grid.Row="2"
+                                   Grid.Column="1"/>
+                            <Label Text="Department:"
+                                   Grid.Row="3"
+                                   Grid.Column="0"
+                                   FontAttributes="Bold"/>
+                            <Label Text="{Binding Employee.Department}" 
+                                   Grid.Row="3"
+                                   Grid.Column="1"/>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+                <StackLayout HorizontalOptions="FillAndExpand">
+                     <ListView ItemsSource="{Binding MenuItemList}" ItemSelected="OnMenuListItemSelected">
+                        <ListView.ItemTemplate >
+                            <DataTemplate>
+                                <TextCell Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </StackLayout>            
+        </ContentPage>
+    </MasterDetailPage.Master>
+
+    <MasterDetailPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <ContentPage Padding="10">
+                    <ContentPage.Content>
+                        <Label Text="This is Home Page"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="Center"/>
+                    </ContentPage.Content>
+                </ContentPage>
+            </x:Arguments>
+        </NavigationPage>
+        
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

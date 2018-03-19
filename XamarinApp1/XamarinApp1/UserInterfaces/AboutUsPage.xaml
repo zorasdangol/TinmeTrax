@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinApp1.UserInterfaces.AboutUsPage">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <Label Text="Welcome to About Us Page!" 
+                   HorizontalOptions="CenterAndExpand"
+                   FontAttributes="Bold"
+                   FontSize="Medium"/>
+            <Label Text="Attendace App is a service provided by:"/>
+            <Label Text="Ims Himalayan Sangrila Pvt. Ltd."/>
+            <Label Text="157 Panchakuti GalliRangashala, Opposite Swimming Pool Gate"/>
+            <Label Text="Tripureswor, Kathmandu"/>
+            <Label Text="Nepal"/>
+            <Label Text="Phone: (977)-(1)-4269645/4254773/2093203"/>
+            <Label Text="Email: himshang@mail.com.np"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

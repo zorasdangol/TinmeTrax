@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamarinApp1"
+             x:Class="XamarinApp1.MainPage"
+             xmlns:converters="clr-namespace:XamarinApp1.Converters"
+             Title="IMS Attendance">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:HideZeroConverter x:Key="HideZeroConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="Wheat"
+                     Margin="5">
+            <Label x:Name="greetingLabel" 
+                   Text="Welcome to Login Form" 
+                   FontSize="Large" 
+                   Margin="10"
+                   TextColor="Black"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="CenterAndExpand" />
+           
+            <Entry x:Name="emailEntry"
+                   Keyboard="Numeric"                   
+                   Placeholder="Enter Employee ID"                   
+                   Text="{Binding EmpId, Mode=TwoWay ,Converter={StaticResource HideZeroConverter}}"/>
+           
+            <Entry x:Name="passwordEntry" 
+                   IsPassword="True"
+                   Placeholder="Enter Password"
+                   Text="{Binding Password, Mode=TwoWay}"/>
+            <Button Text="Login" 
+                    Margin="5,20"                    
+                    BackgroundColor="Beige"
+                    Command="{Binding mainPageCommand}"
+                    CommandParameter="{Binding User}"/>
+            <Button Text="Change Ip Address" 
+                    Margin="5,20"
+                    Command="{Binding signUpCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
