@@ -82,8 +82,10 @@ namespace XamarinApp1.ViewModels
 
         public async void Register()
         {
-           // await App.MobileService.GetTable<User>().InsertAsync(User);
-           await App.Current.MainPage.Navigation.PushAsync(new HomePage());
+            try
+            {
+                await App.Current.MainPage.Navigation.PushAsync(new HomePage());
+            }catch(Exception ex) { }
         }
 
 	}

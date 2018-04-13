@@ -25,4 +25,23 @@ namespace XamarinApp1.Converters
             return GParse.ToLong(value);
         }
     }
+
+    public class StringConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == DBNull.Value)
+                return string.Empty;
+            else
+            {
+                double val = Math.Round( GParse.ToDouble(value),3);
+                return val;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return GParse.ToLong(value);
+        }
+    }
 }

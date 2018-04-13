@@ -50,11 +50,12 @@ namespace XamarinApp1
                     };
                     SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
                     conn.CreateTable<API>();
+                    conn.Execute("delete from API");
                     int rows = conn.Insert(api);
                     conn.Close();
                     if(Helpers.Data.User != null)
                     {
-                        App.Current.MainPage = new NavigationPage(new MainPage());
+                        App.Current.MainPage = (new MainPage());
                     }
                     else
                     {

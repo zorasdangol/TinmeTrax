@@ -16,7 +16,7 @@ namespace XamarinApp1.ViewModels
     {
         public List<MenuItems> MenuItemList { get; set; }
         public MenuListCommand MenuListCommand { get; set; }
-
+        
         private MenuItems _SelectedMenuItem;
 
         public MenuItems SelectedMenuItem
@@ -44,30 +44,52 @@ namespace XamarinApp1.ViewModels
 
         public HomePageVM ()
 		{
-            MenuItemList = new List<MenuItems>();
-            MenuItemList = Helpers.Data.MenuItemList;            
-            MenuListCommand = new MenuListCommand();
-            SelectedMenuItem = new MenuItems();
-            LoadEmployeeData();
-		}      
+            try
+            {
+                if (Helpers.Data.Employee.EmpID != Helpers.Data.User.EmpId)
+                {
+                    LoadEmployeeData();
+                }
+                else
+                    Employee = Helpers.Data.Employee;
+                //if (Helpers.Data.Employee != null)
+                //{
+                //    Employee = new Employee()
+                //    {
+                //        EmpID = Helpers.Data.Employee.EmpID,
+                //        Department = Helpers.Data.Employee.Department,
+                //        Branch = Helpers.Data.Employee.Branch,
+                //        EmployeeName = Helpers.Data.Employee.EmployeeName,
+                //        Designation = Helpers.Data.Employee.Designation,
+                //        Section = Helpers.Data.Employee.Section
+                //    };
+                //}
+                MenuItemList = new List<MenuItems>();
+                MenuItemList = Helpers.Data.MenuItemList;
+                MenuListCommand = new MenuListCommand();
+                SelectedMenuItem = new MenuItems();
+            }catch(Exception ex) 
+{ }      
+		}
 
-        public  async void  LoadEmployeeData()
+        public async void LoadEmployeeData()
         {
             try
             {
-                Helpers.Data.Employee = await LoginLogic.GetUserInfoResponse(Helpers.Data.User.EmpId);
-                Employee = Helpers.Data.Employee;
-                //SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
-                //var a = conn.Table<Employee>().ToList();
-                //conn.CreateTable<Employee>();
-                //int rows = conn.Insert(Employee);
-                //conn.Close();
+                var employeeData = await LoginLogic.GetUserInfoResponse(Helpers.Data.User.EmpId);
+                if (employeeData == null)
+                {
+                }
+                else
+                {
+                    Helpers.Data.Employee = employeeData;
+                    Employee = Helpers.Data.Employee;                    
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
             }
-    
+
         }
 
     }

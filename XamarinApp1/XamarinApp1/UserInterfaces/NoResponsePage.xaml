@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinApp1.UserInterfaces.NoResponsePage"
+             Title="No Connection">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand"
+                     Margin="0,30,0,0">
+            <Label Text="No Internet Connection or Server is not found."
+                   FontAttributes="Bold"
+                   FontSize="Medium" 
+                   Margin="10"></Label>
+            <Label Text="Turn on Wifi or Change IP Address for connection"
+                   Margin="15,5"></Label>
+            <Button x:Name="ReconnectBT"
+                    Text="Re-Connect"
+                    Clicked="ReconnectBT_Clicked"
+                    Margin="10"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

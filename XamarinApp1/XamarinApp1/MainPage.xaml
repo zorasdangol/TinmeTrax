@@ -4,15 +4,14 @@
              xmlns:local="clr-namespace:XamarinApp1"
              x:Class="XamarinApp1.MainPage"
              xmlns:converters="clr-namespace:XamarinApp1.Converters"
-             Title="IMS Attendance">
+             Title="TimeTrax">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:HideZeroConverter x:Key="HideZeroConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ContentPage.Content>
-        <StackLayout BackgroundColor="Wheat"
-                     Margin="5">
+    <ContentPage.Content >
+        <StackLayout Margin="5" BackgroundColor="Azure">
             <Label x:Name="greetingLabel" 
                    Text="Welcome to Login Form" 
                    FontSize="Large" 
@@ -20,7 +19,11 @@
                    TextColor="Black"
                    HorizontalTextAlignment="Center"
                    HorizontalOptions="CenterAndExpand" />
-           
+            <Image Aspect="AspectFit"
+                   HorizontalOptions="FillAndExpand"
+                   Source="icon.png"
+                   Margin="0,0,0,50"/>    
+
             <Entry x:Name="emailEntry"
                    Keyboard="Numeric"                   
                    Placeholder="Enter Employee ID"                   
@@ -31,8 +34,7 @@
                    Placeholder="Enter Password"
                    Text="{Binding Password, Mode=TwoWay}"/>
             <Button Text="Login" 
-                    Margin="5,20"                    
-                    BackgroundColor="Beige"
+                    Margin="5,20"            
                     Command="{Binding mainPageCommand}"
                     CommandParameter="{Binding User}"/>
             <Button Text="Change Ip Address" 

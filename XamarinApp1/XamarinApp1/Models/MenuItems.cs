@@ -7,6 +7,7 @@ namespace XamarinApp1.Models
     public class MenuItems
     {
         public int Index { get; set; }
+        public string Icon { get; set; }
         public string Name { get; set; }
     }  
 }

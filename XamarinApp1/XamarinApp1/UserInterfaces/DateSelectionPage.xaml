@@ -3,10 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="XamarinApp1.UserInterfaces.DateSelectionPage"
-             Title="Attendance Page">
+             Title="Attendance Report">
     <ContentPage.Content>
-        <StackLayout IsVisible="{Binding IsDateSelectionVisible}" Margin="5">
-            <Label Text="Date Selection:" FontAttributes="Bold"/>
+        <StackLayout IsVisible="{Binding IsDateSelectionVisible}" Margin="5" BackgroundColor="Azure">
+            <Label Text="Date Selection:" 
+                   FontAttributes="Bold"
+                   FontSize="Medium"/>
             <Label Text="Select Start Date:"/>
             <DatePicker Date="{Binding SelectedStartDate}">
                 <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>

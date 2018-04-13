@@ -23,7 +23,10 @@ namespace XamarinApp1.Logic
                     login = await response.Content.ReadAsStringAsync();
                 }
                 return login;
-            }catch(Exception ex) {   await App.Current.MainPage.DisplayAlert("Error",ex.Message,"Ok"); return null; }          
+            }catch(Exception ex) {
+                await App.Current.MainPage.DisplayAlert("Error","Internet is not available or Server not found","Ok");
+                //await App.Current.MainPage.Navigation.PushAsync(new NoResponsePage());
+                return null; }          
         }
 
         public async static Task<List<Attendance>> GetAttendanceResponse(int empid,DateTime SDate, DateTime EDate )
@@ -42,7 +45,8 @@ namespace XamarinApp1.Logic
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("error", ex.Message, "ok"); return null;
+                await App.Current.MainPage.DisplayAlert("Attendance not loaded", "Internet is not available or Server not found","OK");
+                return null;
             }
 
         }
@@ -64,7 +68,8 @@ namespace XamarinApp1.Logic
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok"); return null;
+                await App.Current.MainPage.DisplayAlert("Leave Summary Info not loaded", "Internet is not available or Server not found", "OK");
+                return null;
             }
 
         }
@@ -86,7 +91,8 @@ namespace XamarinApp1.Logic
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok"); return null;
+                await App.Current.MainPage.DisplayAlert("Leave Info not Loaded", "Internet is not available or Server not found", "OK");               
+                return null;
             }
 
         }
@@ -97,19 +103,45 @@ namespace XamarinApp1.Logic
             try
             {
                 var url = Employee.GenerateUserInfoURL(empid);
-                using (HttpClient client = new HttpClient())
+                if(Helpers.Data.Employee.EmpID != Helpers.Data.User.EmpId)
                 {
-                    var response = await client.GetAsync(url);
-                    var json = await response.Content.ReadAsStringAsync();
-                    employee = JsonConvert.DeserializeObject<Employee>(json);
+                    using (HttpClient client = new HttpClient())
+                    {
+                        var response = await client.GetAsync(url);
+                        var json = await response.Content.ReadAsStringAsync();
+                        employee = JsonConvert.DeserializeObject<Employee>(json);
+                        //Helpers.Data.Employee = employee;
+                    }
+                    return employee;
                 }
-                return employee;
+                return Helpers.Data.Employee;               
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok"); return null;
-            }
-
+                await App.Current.MainPage.DisplayAlert("Employee Info not loaded", "Internet is not available or Server not found", "OK");               
+                return null;
+            }                                                        
         }
+
+        public async static Task<string> GetAuthApiResponse(string ipAddress, string pwd)
+        {
+            try
+            {
+                string apiset = "";
+                var url = API.GenerateAuthApiURL(ipAddress, pwd);
+                using (HttpClient client = new HttpClient())
+                {
+                    var response = await client.GetAsync(url);
+                    apiset = await response.Content.ReadAsStringAsync();
+                }
+                return apiset;
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Incorrect Url address or no Internet Connection", "Ok");
+                return null;
+            }
+        }
+
     }
 }

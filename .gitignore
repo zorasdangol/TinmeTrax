@@ -108,8 +108,6 @@ POS/POS.csproj
 IMS POS Library/IMS POS Library/ImsPosLibrary.csproj
 POS.sln
 Billing/IMS POS.csproj
-XamarinApp1/XamarinApp1.Android
-XamarinApp1/XamarinApp1.iOS
 
 
 # Click-Once directory

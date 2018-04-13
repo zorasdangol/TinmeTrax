@@ -3,64 +3,108 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:local="clr-namespace:XamarinApp1.UserInterfaces"
             x:Class="XamarinApp1.UserInterfaces.HomePage"
-            >
+            Title="IMS-Time Trax">
     
     <MasterDetailPage.Master>
-        <ContentPage Padding="10" BackgroundColor="WhiteSmoke" Title="Master" >
+        <ContentPage BackgroundColor="Azure"
+                     Title="Master" >          
             <StackLayout>
-                <Frame  OutlineColor="Azure"
-                        CornerRadius="5"
-                        BackgroundColor="AntiqueWhite">
-                <StackLayout HorizontalOptions="FillAndExpand">                   
-                    <Label Text="Employee Details:" FontSize="Large"/>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                        
-                            <Label Text="ID:"
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    FontAttributes="Bold"/>
-                            <Label Text="{Binding Employee.EmpID}"
-                                    Grid.Row="0"
-                                    Grid.Column="1"/>
-                            <Label Text="Name:"
-                                   Grid.Row="1"
-                                   Grid.Column="0"
-                                   FontAttributes="Bold"/>
-                            <Label Text="{Binding Employee.EmployeeName}"
-                                   Grid.Row="1"
-                                   Grid.Column="1"/>
-                            <Label Text="Designation:"
-                                   Grid.Row="2"
-                                   Grid.Column="0"
-                                   FontAttributes="Bold"/>
-                            <Label Text="{Binding Employee.Designation}"
-                                   Grid.Row="2"
-                                   Grid.Column="1"/>
-                            <Label Text="Department:"
-                                   Grid.Row="3"
-                                   Grid.Column="0"
-                                   FontAttributes="Bold"/>
-                            <Label Text="{Binding Employee.Department}" 
-                                   Grid.Row="3"
-                                   Grid.Column="1"/>
-                        </Grid>
-                    </StackLayout>
-                </Frame>
+                    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Image Source="Icon.png"
+                               AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                               AbsoluteLayout.LayoutFlags="All"
+                               Opacity="0.45"
+                               Aspect="AspectFill"></Image>
+                        <StackLayout Margin="20,30" AbsoluteLayout.LayoutBounds="0,20,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent">
+                            <StackLayout HorizontalOptions="FillAndExpand">
+                            <Label Text="Employee Details:" 
+                                       FontSize="Large"
+                                   TextColor="Black"/>
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Text="ID:"
+                                           Grid.Row="0"
+                                           Grid.Column="0"
+                                           FontAttributes="Bold"
+                                           TextColor="Black"/>
+                                    <Label Text="{Binding Employee.EmpID}"
+                                           Grid.Row="0"
+                                           Grid.Column="1"
+                                           FontAttributes="Bold"
+                                           TextColor="Black"/>
+                                    <Label Text="Name:"
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            FontAttributes="Bold"
+                                           TextColor="Black"/>
+                                    <Label Text="{Binding Employee.EmployeeName}"
+                                           FontAttributes="Bold"
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                           TextColor="Black"/>
+                                    <Label Text="Designation:"
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            FontAttributes="Bold"
+                                           TextColor="Black"/>
+                                    <Label Text="{Binding Employee.Designation}"
+                                           FontAttributes="Bold"
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                           TextColor="Black"/>
+                                    <Label Text="Department:"
+                                            Grid.Row="3"
+                                            Grid.Column="0"
+                                            FontAttributes="Bold"
+                                           TextColor="Black"/>
+                                    <Label Text="{Binding Employee.Department}" 
+                                           FontAttributes="Bold"
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                           TextColor="Black"/>
+                                    <Label Text="Section:"
+                                            Grid.Row="4"
+                                            Grid.Column="0"
+                                            FontAttributes="Bold"
+                                           TextColor="Black"/>
+                                    <Label Text="{Binding Employee.Section}" 
+                                           FontAttributes="Bold"
+                                            Grid.Row="4"
+                                            Grid.Column="1"
+                                           TextColor="Black"/>   
+                            </Grid>
+                            </StackLayout>
+                        </StackLayout>
+                    </AbsoluteLayout>
+                                   
                 <StackLayout HorizontalOptions="FillAndExpand">
                      <ListView ItemsSource="{Binding MenuItemList}" ItemSelected="OnMenuListItemSelected">
                         <ListView.ItemTemplate >
                             <DataTemplate>
-                                <TextCell Text="{Binding Name}" />
+                                <ViewCell>
+                                    <StackLayout VerticalOptions="FillAndExpand"
+                                                 Orientation="Horizontal"
+                                                 Padding="10,10,0,10"
+                                                 Spacing="10">
+                                        <Image Source="{Binding Icon}"
+                                               WidthRequest="40"
+                                               HeightRequest="40"
+                                               VerticalOptions="Start"/>
+                                        <Label Text="{Binding Name}"
+                                               FontSize="Small"
+                                               TextColor="Black"/>
+                                    </StackLayout>
+                                </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
@@ -74,9 +118,6 @@
             <x:Arguments>
                 <ContentPage Padding="10">
                     <ContentPage.Content>
-                        <Label Text="This is Home Page"
-                               HorizontalOptions="CenterAndExpand"
-                               VerticalOptions="Center"/>
                     </ContentPage.Content>
                 </ContentPage>
             </x:Arguments>

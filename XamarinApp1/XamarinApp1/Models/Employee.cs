@@ -4,13 +4,9 @@ using System.Text;
 
 namespace XamarinApp1.Models
 {
-    public class Employee
-    {
-        public Employee()
-        {
-            EmpID = new int();
-        }
-        public int EmpID { get; set; }
+    public class Employee:BaseModel
+    {        
+        public int EmpID { get; set;  }
         public string EmployeeName { get; set; }
         public string Designation { get; set; }
         public string Department { get; set; }

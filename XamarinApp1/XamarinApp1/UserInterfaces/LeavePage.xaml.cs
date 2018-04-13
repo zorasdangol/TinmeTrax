@@ -20,5 +20,6 @@ namespace XamarinApp1.UserInterfaces
             viewModel = new LeavePageVM();
             BindingContext = viewModel;
 		}
-	}
+
+    }
 }

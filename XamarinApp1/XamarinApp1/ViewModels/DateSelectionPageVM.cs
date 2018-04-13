@@ -19,7 +19,6 @@ namespace XamarinApp1.ViewModels
             set { _SelectedStartDate = value;
                 OnPropertyChanged("SelectedStartDate");
                 Helpers.Data.SelectedStartDate = SelectedStartDate;
-
             }
         }
 
@@ -47,8 +46,12 @@ namespace XamarinApp1.ViewModels
 
         public void NavigateToAttendance()
         {
+            try
+            {
+                App.Current.MainPage.Navigation.PushAsync(new AttendancePage(SelectedStartDate, _SelectedEndDate));
+            }
+            catch (Exception ex) { App.Current.MainPage.DisplayAlert("Error","Page could not be loaded","Ok"); }
 
-            App.Current.MainPage.Navigation.PushAsync(new AttendancePage(SelectedStartDate, _SelectedEndDate));
             //App.Current.MainPage = new NavigationPage( new  AttendancePage(SelectedStartDate, SelectedEndDate));
         }
 	}

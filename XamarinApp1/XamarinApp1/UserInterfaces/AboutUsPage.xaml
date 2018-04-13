@@ -1,20 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinApp1.UserInterfaces.AboutUsPage">
+             x:Class="XamarinApp1.UserInterfaces.AboutUsPage"
+             Title="About Us">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <Label Text="Welcome to About Us Page!" 
                    HorizontalOptions="CenterAndExpand"
                    FontAttributes="Bold"
                    FontSize="Medium"/>
-            <Label Text="Attendace App is a service provided by:"/>
-            <Label Text="Ims Himalayan Sangrila Pvt. Ltd."/>
-            <Label Text="157 Panchakuti GalliRangashala, Opposite Swimming Pool Gate"/>
-            <Label Text="Tripureswor, Kathmandu"/>
-            <Label Text="Nepal"/>
-            <Label Text="Phone: (977)-(1)-4269645/4254773/2093203"/>
-            <Label Text="Email: himshang@mail.com.np"/>
+            <ScrollView>
+                <StackLayout Orientation="Vertical"
+                         Margin="5"
+                         Padding="5">
+                    <Image Source="IMSLogo.jpg"/>
+                    <Label Text="Ims TimeTrax is a service provided by:"/>
+                    <Label Text="Ims Himalayan Sangrila Pvt. Ltd."/>
+                    <Label Text="157 Panchakuti GalliRangashala, Tripureswor, Kathmandu"/>
+                    <Label Text="Nepal"/>
+                    <Label Text="Phone: (977)-(1)-4269645/4254773"/>
+                    <Label Text="Email: himshang@mail.com.np"/>
+                    <Label Text="Our Products:"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       Margin="5,20,5,0"/>
+                    <Label Text="IMS-Time Trax"/>
+                    <Label Text="- Attendance/Payroll/HR Management"
+                       Margin="10,5,5,5"/>
+                    <Label Text="IMS-POS"/>
+                    <Label Text="- Billing/Accounting/Inventory Management"
+                       Margin="10,5,5,5"/>
+                    <Label Text="- IMS Courier Management System"
+                           Margin="0,5"/>
+                    <Label Text="- IMS Cargo Management System"
+                           Margin="0,5"/>
+                    <Label Text="- IMS-Library Management"
+                           Margin="0,5"/>
+                    <Label Text="- IMS-Restaurant Management"
+                           Margin="0,5"/>
+                    <Label Text="- IMS-Petrol Pump Management"
+                           Margin="0,5"/>
+                    <Label Text="- And other Customized Solutions for Desktop/Web/Mobile"
+                           Margin="0,0,0,20"/>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
+            
     </ContentPage.Content>
 </ContentPage>

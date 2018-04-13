@@ -2,43 +2,46 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XamarinApp1.UserInterfaces.AttendancePage"
-             Title="Attendance Page">
+             Title="Attendance Report">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="Center" Padding="10">
-            <ListView ItemsSource="{Binding AttendanceList}" HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Frame OutlineColor="AliceBlue">                                
-                                <Label Text="List" FontSize="15"/>
-                                <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <StackLayout Orientation="Vertical" Grid.Column="0" Padding="0,15,0,15">                                    
-                                    <Label Text="Date In   :" />
-                                    <Label Text="Date Out  :" />
-                                    <Label Text="Day Status :" />
-                                </StackLayout>
-                                    
-                                <StackLayout Orientation="Vertical" Grid.Column="1" Padding="0,15,0,15">
-                                    <Label Text="{Binding Tdate}" />
-                                    <Label Text="{Binding TDate_Out}" />
-                                    <Label Text="{Binding DayStatus}" />
-                                </StackLayout>
-                                <StackLayout Orientation="Vertical" Grid.Column="2" Padding="0,15,0,15">                                        
-                                    <Label Text="{Binding InTime}" />
-                                    <Label Text="{Binding OutTime}" />
-                                </StackLayout>
+            <StackLayout HorizontalOptions="Center" Padding="5">            
+                <ListView ItemsSource="{Binding AttendanceList}"
+                      HasUnevenRows="True" 
+                      BackgroundColor="Azure">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame OutlineColor="Black" 
+                                       Margin="5"
+                                       CornerRadius="5"
+                                       BackgroundColor="BlanchedAlmond">
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Orientation="Vertical" Grid.Column="0" Padding="5">
+                                            <Label Text="Date In   :" />
+                                            <Label Text="Date Out  :" />
+                                            <Label Text="Day Status :" />
+                                        </StackLayout>
 
-                                </Grid>
-                            </Frame>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                        <StackLayout Orientation="Vertical" Grid.Column="1" Padding="5">
+                                            <Label Text="{Binding Tdate}" />
+                                            <Label Text="{Binding TDate_Out}" />
+                                            <Label Text="{Binding DayStatus}" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical" Grid.Column="2" Padding="5">
+                                            <Label Text="{Binding InTime}" />
+                                            <Label Text="{Binding OutTime}" />
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

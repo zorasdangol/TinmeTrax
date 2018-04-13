@@ -1,8 +1,10 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 using XamarinApp1.Commands;
 using XamarinApp1.Logic;
 using XamarinApp1.Models;
@@ -56,17 +58,14 @@ namespace XamarinApp1.ViewModels
 
 
         public MainPageVM()
-        {
-            //SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
-            //var UserData = conn.Execute("select * from User");
-            //if (UserData != null)
-            //{
-
-            //}
-            User = new User();
-            mainPageCommand = new MainPageCommand(this);
-            signUpCommand = new SignUpCommand(this);
-        }
+        {            
+            try {                
+                User = new User();
+                Helpers.Data.User = new User();
+                mainPageCommand = new MainPageCommand(this);
+                signUpCommand = new SignUpCommand(this);
+            }catch(Exception ex) { App.Current.MainPage.DisplayAlert("Error",ex.Message,"OK"); }
+            }
 
         public async void Login()
         {
@@ -81,11 +80,9 @@ namespace XamarinApp1.ViewModels
                     conn.Execute("Delete from User");
                     int rows = conn.Insert(User);
                     conn.Close();
-                    if (rows == 1) 
-                    {
-                        await App.Current.MainPage.DisplayAlert("Success", "Logged in ", "OK");
-                       // Helpers.Data.Employee = await LoginLogic.GetUserInfoResponse(Helpers.Data.User.EmpId);
-                        App.Current.MainPage = new HomePage();
+                    if (rows == 1)
+                    {                       
+                        App.Current.MainPage = (new HomePage());
                     }
                     else
                     {
@@ -96,12 +93,12 @@ namespace XamarinApp1.ViewModels
                 else if (loginResult == "false")
                     await App.Current.MainPage.DisplayAlert("Error", "Employee ID or Password incorrect", "OK");
             }
-            catch (Exception ex) { await App.Current.MainPage.DisplayAlert("Error", ex.Message, "OK"); }
+            catch (Exception ex) {  }
         }
 
         public async void SignUp()
         {
-            await App.Current.MainPage.Navigation.PushAsync(new APISetPage());
+            await App.Current.MainPage.Navigation.PushAsync(new ApiPasswordPage());
         }
     }
 }

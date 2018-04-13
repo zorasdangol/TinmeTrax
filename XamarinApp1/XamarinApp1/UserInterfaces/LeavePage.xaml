@@ -2,35 +2,49 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XamarinApp1.UserInterfaces.LeavePage"
-             Title="Leave Page">
+             xmlns:con ="clr-namespace:XamarinApp1.Converters"
+             Title="Leave Detail Report">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <con:VisibilityConverter x:Key="vc"/>
+            <con:InVisibilityConverter x:Key="ivc"/>
+            <con:StringConverter x:Key="StringConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="Center" Padding="10">
+        <StackLayout HorizontalOptions="Center" 
+                     Padding="5"                     
+                     BackgroundColor="Azure">
             <ListView ItemsSource="{Binding LeaveList}" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Frame OutlineColor="AliceBlue">
+                            <Frame OutlineColor="AliceBlue" 
+                                   Margin="5"
+                                       CornerRadius="7"
+                                       BackgroundColor="BlanchedAlmond">
                                 <Label Text="List" FontSize="15"/>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="2*" />
                                     </Grid.ColumnDefinitions>
-                                    <StackLayout Orientation="Vertical" Grid.Column="0" Padding="0,15,0,15">
+                                    <StackLayout Orientation="Vertical" Grid.Column="0" Padding="5">
                                         <Label Text="Leave Name :" />
-                                        <Label Text="LeaveOn :" />
-                                        <Label Text="Given :" />
-                                        <Label Text="Taken :" />
-                                        <Label Text="Balance :" />
-                                        <Label Text="Remarks :" />
+                                        <Label Text="LeaveOn :"  IsVisible="{Binding Given, Converter={StaticResource ivc}}" />
+                                        <Label Text="Given :"  IsVisible="{Binding Given, Converter={StaticResource vc}}"/>
+                                        <Label Text="Taken :"  IsVisible="{Binding Given, Converter={StaticResource ivc}}" />
+                                        <Label Text="Balance :"  IsVisible="{Binding Given, Converter={StaticResource ivc}}" />
+                                        <Label Text="Remarks :"  IsVisible="{Binding Given, Converter={StaticResource ivc}}"/>
                                     </StackLayout>
-                                    <StackLayout Orientation="Vertical" Grid.Column="1" Padding="0,15,0,15">
+                                    <StackLayout Orientation="Vertical" Grid.Column="1" Padding="5">
                                         <Label Text="{Binding LeaveName}" />
-                                        <Label Text="{Binding LeaveOn}" />
-                                        <Label Text="{Binding Given}" />
-                                        <Label Text="{Binding Taken}" />
-                                        <Label Text="{Binding Balance}" />
-                                        <Label Text="{Binding Remarks}"/>
+                                        <Label Text="{Binding LeaveOn}"  IsVisible="{Binding Given, Converter={StaticResource ivc}}"/>
+                                        <Label Text="{Binding Given,Converter={StaticResource StringConverter}}" IsVisible="{Binding Given, Converter={StaticResource vc}}"/>
+                                        <Label Text="{Binding Taken,Converter={StaticResource StringConverter}}"  IsVisible="{Binding Given, Converter={StaticResource ivc}}"/>
+                                        <Label Text="{Binding Balance}"  IsVisible="{Binding Given, Converter={StaticResource ivc}}"/>
+                                        <Label Text="{Binding Remarks}" IsVisible="{Binding Given, Converter={StaticResource ivc}}"/>
                                     </StackLayout>
                                 </Grid>
                             </Frame>

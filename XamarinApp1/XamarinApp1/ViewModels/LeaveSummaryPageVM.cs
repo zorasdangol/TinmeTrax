@@ -6,6 +6,7 @@ using System.Text;
 using Xamarin.Forms;
 using XamarinApp1.Logic;
 using XamarinApp1.Models;
+using XamarinApp1.UserInterfaces;
 
 namespace XamarinApp1.ViewModels
 {
@@ -32,11 +33,13 @@ namespace XamarinApp1.ViewModels
             try
             {
                 LeaveSummaryList = await LoginLogic.GetLeaveSummaryResponse(Helpers.Data.User.EmpId);
+                if(LeaveSummaryList == null)
+                { 
+                    App.Current.MainPage = (new HomePage(0));
+                }
             }
             catch (Exception ex)
-            {
-                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
-            }
+            {         }
         }
 	}
 }

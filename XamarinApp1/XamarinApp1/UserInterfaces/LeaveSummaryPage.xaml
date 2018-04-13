@@ -3,14 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XamarinApp1.UserInterfaces.LeaveSummaryPage"
              xmlns:local="clr-namespace:XamarinApp1.Models"
-             Title="Leave Summary">
+             Title="Leave Summary Report">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="Center" Padding="10">
-            <ListView ItemsSource="{Binding LeaveSummaryList}" HasUnevenRows="True">
+        <StackLayout HorizontalOptions="Center"
+                     Padding="5"
+                     BackgroundColor="Azure">
+            <ListView ItemsSource="{Binding LeaveSummaryList}"
+                      HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Frame OutlineColor="Black">
+                            <Frame OutlineColor="Black" 
+                                   Margin="5"
+                                       CornerRadius="7"
+                                       BackgroundColor="BlanchedAlmond">
                                 <Label Text="List" FontSize="15"/>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -18,13 +24,13 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <StackLayout Orientation="Vertical" Grid.Column="0" Padding="0,15,0,15">
+                                    <StackLayout Orientation="Vertical" Grid.Column="0" Padding="5">
                                         <Label Text="Leave Name :" />
                                         <Label Text="Given      :" />
                                         <Label Text="Taken      :" />
                                         <Label Text="Balance    :" />
                                     </StackLayout>
-                                    <StackLayout Orientation="Vertical" Grid.Column="1" Padding="0,15,0,15">
+                                    <StackLayout Orientation="Vertical" Grid.Column="1" Padding="5">
                                         <Label Text="{Binding LeaveName}" />
                                         <Label Text="{Binding Given}" />
                                         <Label Text="{Binding Taken}" />

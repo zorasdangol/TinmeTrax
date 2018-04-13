@@ -16,12 +16,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\ApiPasswordCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\LoadDataCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MainPageCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\MasterHomePageCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MenuListCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\RegisterCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\SignUpCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\VisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Data.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\GParse.cs" />
@@ -40,6 +43,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserInterfaces\AboutUsPage.xaml.cs">
       <DependentUpon>AboutUsPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)UserInterfaces\ApiPasswordPage.xaml.cs">
+      <DependentUpon>ApiPasswordPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserInterfaces\AttendancePage.xaml.cs">
@@ -62,10 +69,19 @@
       <DependentUpon>LeaveSummaryPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)UserInterfaces\MasterHomePage.xaml.cs">
+      <DependentUpon>MasterHomePage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)UserInterfaces\NoResponsePage.xaml.cs">
+      <DependentUpon>NoResponsePage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserInterfaces\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ApiPasswordPageVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AttendancePageVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DateSelectionPageVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
@@ -73,6 +89,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LeavePageVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LeaveSummaryPageVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MasterHomePageVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RegisterPageVM.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -122,9 +139,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Assets\Images\pp.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)UserInterfaces\AboutUsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -132,6 +146,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)APISetPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)UserInterfaces\ApiPasswordPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)UserInterfaces\MasterHomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)UserInterfaces\NoResponsePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

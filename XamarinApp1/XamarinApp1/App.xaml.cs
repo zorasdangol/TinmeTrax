@@ -18,12 +18,16 @@ namespace XamarinApp1
 
       public App ()
 		{
+            Helpers.Data.Employee = new Employee();
+            Helpers.Data.User = new User();
 			InitializeComponent();
         
-            MainPage = new XamarinApp1.MainPage();
+            MainPage =(new XamarinApp1.MainPage());
 		}
         public App(string databaseLocation)
         {
+            Helpers.Data.Employee = new Employee();
+            Helpers.Data.User = new User();
             InitializeComponent();
 
             DatabaseLocation = databaseLocation;
@@ -32,40 +36,58 @@ namespace XamarinApp1
             { 
                 SQLiteConnection conn = new SQLiteConnection(DatabaseLocation);
                 conn.CreateTable<User>();
-                conn.CreateTable<API>();
-                conn.CreateTable<Employee>();
                 var userRow = conn.Table<User>().ToList();
-                var apiRow = conn.Table<API>().ToList();
-                var employeeRow = conn.Table<Employee>().ToList();
                 var UserData = conn.Query<User>("Select * from User");
-                var ApiData = conn.Query<API>("Select * from API");
-                var EmployeeData = conn.Query<Employee>("Select * from Employee");
-                conn.Close();
-
-                if (userRow.Count == 1 && apiRow.Count == 1)
+                //LoadEmployeeData();
+                if (userRow.Count > 0)
                 {
                     Helpers.Data.User = UserData.FirstOrDefault();
-                    Helpers.Constants.ipAddress = ApiData.FirstOrDefault().ipAddress;
-
-                    MainPage = new HomePage();
+                    conn.CreateTable<API>();
+                    var apiRow = conn.Table<API>().ToList();
+                    var ApiData = conn.Query<API>("Select * from API");
+                    if (apiRow.Count > 0)
+                    {
+                        Helpers.Constants.ipAddress = ApiData.FirstOrDefault().ipAddress;
+                        string ip = Helpers.Constants.ipAddress;
+                    }
+                    else
+                    {
+                        API obj = new API { ipAddress = Helpers.Constants.ipAddress };
+                        conn.Insert(obj);
+                    }
+                    MainPage = (new HomePage());
                 }
                 else
                 {
-                    MainPage = new NavigationPage(new MainPage());
+                    MainPage =new NavigationPage (new MainPage());
                 }
+                conn.Close();
             }
             catch(Exception ex)
             {
                 App.Current.MainPage.DisplayAlert("Error",ex.Message,"OK");
             }
-
         }
 
-        public async void LoadEmployee()
+        public async void LoadEmployeeData()
         {
-            Helpers.Data.Employee = await LoginLogic.GetUserInfoResponse(Helpers.Data.User.EmpId);
-        }
+            try
+            {
+                var employeeData = await LoginLogic.GetUserInfoResponse(Helpers.Data.User.EmpId);
+                if (employeeData == null)
+                {
+                    App.Current.MainPage = new HomePage(0);
+                }
+                else
+                {
+                    Helpers.Data.Employee = employeeData;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
 
+        }
 
         protected override void OnStart ()
 		{

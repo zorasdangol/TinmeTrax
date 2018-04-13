@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinApp1.UserInterfaces.MasterHomePage"
+             Title="IMS-Time Trax">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="Welcome to IMS-Time Trax!" 
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                HorizontalOptions="CenterAndExpand" />
+             <StackLayout HorizontalOptions="FillAndExpand">
+                <Frame  BackgroundColor="LightBlue"
+                        CornerRadius="7">
+                    <Label Text="Employee Details:" 
+                                       FontSize="Large"
+                                   TextColor="Black"/>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Text="ID:"
+                                           Grid.Row="0"
+                                           Grid.Column="0"
+                                           FontAttributes="Bold"
+                                           TextColor="Black"/>
+                        <Label Text="{Binding Employee.EmpID}"
+                                           Grid.Row="0"
+                                           Grid.Column="1"
+                                           FontAttributes="Bold"
+                                           TextColor="Black"/>
+                        <Label Text="Name:"
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            FontAttributes="Bold"
+                                           TextColor="Black"/>
+                        <Label Text="{Binding Employee.EmployeeName}"
+                                           FontAttributes="Bold"
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                           TextColor="Black"/>
+                        <Label Text="Designation:"
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            FontAttributes="Bold"
+                                           TextColor="Black"/>
+                        <Label Text="{Binding Employee.Designation}"
+                                           FontAttributes="Bold"
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                           TextColor="Black"/>
+                        <Label Text="Department:"
+                                            Grid.Row="3"
+                                            Grid.Column="0"
+                                            FontAttributes="Bold"
+                                           TextColor="Black"/>
+                        <Label Text="{Binding Employee.Department}" 
+                                           FontAttributes="Bold"
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                           TextColor="Black"/>
+                        <Label Text="Section:"
+                                            Grid.Row="4"
+                                            Grid.Column="0"
+                                            FontAttributes="Bold"
+                                           TextColor="Black"/>
+                        <Label Text="{Binding Employee.Section}" 
+                                           FontAttributes="Bold"
+                                            Grid.Row="4"
+                                            Grid.Column="1"
+                                           TextColor="Black"/>
+                    </Grid>
+                </Frame>
+            </StackLayout>
+            <Button Text="Refresh"
+                    Command="{Binding MasterHomePageCommand}"
+                    CommandParameter="0"/>
+            <Button Text="Check Attendance"
+                    Command="{Binding MasterHomePageCommand}"
+                    CommandParameter="1"/>
+            <Button Text="Leave Detail"
+                    Command="{Binding MasterHomePageCommand}"
+                    CommandParameter="2"/>
+            <Button Text="Leave Summary"
+                    Command="{Binding MasterHomePageCommand}"
+                    CommandParameter="3"/>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

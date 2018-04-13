@@ -26,5 +26,6 @@ namespace XamarinApp1.UserInterfaces
         {
             Navigation.PushAsync(new AttendancePage(Helpers.Data.SelectedStartDate,Helpers.Data.SelectedEndDate));
         }
+
     }
 }

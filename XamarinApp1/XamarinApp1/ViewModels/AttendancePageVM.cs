@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using XamarinApp1.Logic;
 using XamarinApp1.Models;
+using XamarinApp1.UserInterfaces;
 
 namespace XamarinApp1.ViewModels
 {
@@ -27,6 +28,10 @@ namespace XamarinApp1.ViewModels
             try
             {
                 AttendanceList = await LoginLogic.GetAttendanceResponse(Helpers.Data.User.EmpId, SDate.Date , EDate.Date) ;
+                if(AttendanceList == null)
+                {
+                    App.Current.MainPage = (new HomePage(0));
+                }
                 foreach(var attendance in AttendanceList)
                 {
                     if (string.IsNullOrEmpty(attendance.OutTime))
@@ -35,10 +40,7 @@ namespace XamarinApp1.ViewModels
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
-            }
+            catch (Exception ex)  {      }
         }
     }
 }
