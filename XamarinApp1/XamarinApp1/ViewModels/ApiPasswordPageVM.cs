@@ -61,6 +61,47 @@ namespace XamarinApp1.ViewModels
 
         public string ipAddress { get; set; }
 
+        private bool _IsDomain;
+        public bool IsDomain
+        {
+            get { return _IsDomain; }
+            set
+            {
+                if (_IsDomain != value)
+                {
+                    _IsDomain = value;
+                    IsIPAddress = !value;
+                    OnPropertyChanged("IsDomain");
+                }
+            }
+        }
+
+        private bool _IsIPAddress;
+        public bool IsIPAddress
+        {
+            get { return _IsIPAddress; }
+            set
+            {
+                if (_IsIPAddress != value)
+                {
+                    _IsIPAddress = value;
+                    IsDomain = !value;
+                    OnPropertyChanged("IsIPAddress");
+                }
+            }
+        }
+
+        private string _DomainName;
+        public string DomainName
+        {
+            get { return _DomainName; }
+            set
+            {
+                _DomainName = value;
+                OnPropertyChanged("DomainName");                
+            }
+        }
+
         public ApiPasswordCommand ApiPasswordCommand { get; set; }
         
         public ApiPasswordPageVM()
@@ -71,49 +112,66 @@ namespace XamarinApp1.ViewModels
             ip3 = "0";
             ip4 = "131";
             ApiPasswordCommand = new ApiPasswordCommand(this);
+            IsDomain = true;
+            DomainName = "";
         }
 
         public async void NavigateApiPage()
         {
             try
             {
-                if (string.IsNullOrEmpty(ip1) || string.IsNullOrEmpty(ip2) || string.IsNullOrEmpty(ip3) || string.IsNullOrEmpty(ip4))
+                if (IsIPAddress)
                 {
-                    await App.Current.MainPage.DisplayAlert("Error", "Fill the ip address", "OK");
-                }
-                else
-                {
-                    if (string.IsNullOrEmpty(Port))
+                    if (string.IsNullOrEmpty(ip1) || string.IsNullOrEmpty(ip2) || string.IsNullOrEmpty(ip3) || string.IsNullOrEmpty(ip4))
                     {
-                        ipAddress = "http://" + ip1 + "." + ip2 + "." + ip3 + "." + ip4;
+                        await App.Current.MainPage.DisplayAlert("Error", "Fill the ip address", "OK");
                     }
                     else
                     {
-                        ipAddress = "http://" + ip1 + "." + ip2 + "." + ip3 + "." + ip4 + ":" + Port;
-                    }
-                    string apiResult = await LoginLogic.GetAuthApiResponse(ipAddress, Password);
-                    if(apiResult == null)
-                    {
-                        //App.Current.MainPage.Navigation.PushAsync(new NoResponsePage());
-                    }
-                    if (apiResult == "true")
-                    {
-                        API api = new API
+                        if (string.IsNullOrEmpty(Port))
                         {
-                            ipAddress = this.ipAddress
-                        };
-                        SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
-                        conn.CreateTable<API>();
-                        conn.Execute("delete from API");
-                        int rows = conn.Insert(api);
-                        conn.Close();
-                        Helpers.Constants.ipAddress = ipAddress;
-                        App.Current.MainPage = new NavigationPage(new MainPage());
-                        await App.Current.MainPage.DisplayAlert("Success","API Url set correctly","Ok");
+                            ipAddress = "http://" + ip1 + "." + ip2 + "." + ip3 + "." + ip4;
+                        }
+                        else
+                        {
+                            ipAddress = "http://" + ip1 + "." + ip2 + "." + ip3 + "." + ip4 + ":" + Port;
+                        }
                     }
-                    else if (apiResult == "false")
-                        await App.Current.MainPage.DisplayAlert("Error", "Url or Password incorrect", "OK");
                 }
+                else
+                {
+                    if (string.IsNullOrEmpty(DomainName))
+                    {
+                        await App.Current.MainPage.DisplayAlert("Error", "Enter correct Domain Name", "OK");
+                    }
+                    else
+                    {
+                        ipAddress = DomainName;
+                    }
+                }
+                string apiResult = await LoginLogic.GetAuthApiResponse(ipAddress, Password);
+                if(apiResult == null)
+                {
+                    //App.Current.MainPage.Navigation.PushAsync(new NoResponsePage());
+                }
+                if (apiResult == "true")
+                {
+                    API api = new API
+                    {
+                        ipAddress = this.ipAddress
+                    };
+                    SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
+                    conn.CreateTable<API>();
+                    conn.Execute("delete from API");
+                    int rows = conn.Insert(api);
+                    conn.Close();
+                    Helpers.Constants.ipAddress = ipAddress;
+                    App.Current.MainPage = new NavigationPage(new MainPage());
+                    await App.Current.MainPage.DisplayAlert("Success","API Url set correctly","Ok");
+                }
+                else if (apiResult == "false")
+                    await App.Current.MainPage.DisplayAlert("Error", "Url or Password incorrect", "OK");
+                
             }
             catch (Exception ex) {  }
 

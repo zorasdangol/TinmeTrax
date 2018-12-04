@@ -23,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MenuListCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\RegisterCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\SignUpCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\VisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Constants.cs" />
